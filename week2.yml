@@ -1,0 +1,28 @@
+---
+- name: Gather Hostnames
+  hosts: cislinuxserver
+  gather_facts: true
+
+  tasks:
+    - name: IP
+      ansible.builtin.debug: 
+        msg: "This system is running {{ ansible_facts['distribution_file_variety'] }} has an ip address of {{ ansible_facts['ens33']['ipv4']['address'] }} "
+
+    - name: RAM
+      ansible.builtin.debug: 
+        msg: "This system has {{ ansible_facts['memtotal_mb'] }} of RAM "
+
+    - name: CORES
+      ansible.builtin.debug: 
+       msg: "This system is has {{ ansible_facts['processor_cores'] }} cores "
+
+    - name: Hostname
+      ansible.builtin.debug: 
+        msg: "This system is called {{ ansible_facts['hostname'] }} "
+
+    - name: Storage
+      ansible.builtin.debug: 
+        msg: "This system has {{ ansible_facts['devices']['sda'].size }} "  
+
+
+
